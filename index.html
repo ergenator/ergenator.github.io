@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>ERGENATOR</title>
+<META http-equiv="Content-Type" content="text/html; charset=windows-1254">
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-9">
+<meta content='initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'/>
+
+<style>
+body{margin:0 0 0 0;padding:0 0 0 0;text-align:center;background:#78909C;}
+body *{font-family:Helvetica, Arial, sans-serif;color:#fff;font-weight:bold;}
+textarea{
+border-radius:3px;
+-webkit-border-radius:3px;
+padding:8px;width:90%;min-height:180px;height:34vh;margin:6px auto;max-width:450px;box-shadow:1px 1px 4px rgba(0,0,0,0.4);color:#444 !important;font-weight:normal !important;}
+select, option{color:#444;}
+select{
+padding:8px;
+box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+margin-right:4px;
+}
+.eet{
+display:inline-block;
+padding:9px 36px;
+margin:0 0 0 0;text-decoration:none !important;
+background-color:#795548;
+border-radius:3px;
+-webkit-border-radius:3px;
+box-shadow:1px 1px 4px rgba(0,0,0,0.4);
+}
+iframe{
+width:250px;height:60px;
+
+}
+</style>
+<script>
+
+function ergenator(){
+var fhf = document.getElementById('sonuc');
+var ayv = document.getElementById('ayva').value;
+if(ayv != "0"){
+if(ayv == "o"){var ek = ' hoboro.';}
+else{
+var ek = ' bikbikbik.';
+}
+var sonucum = document.getElementById('kaynak').value.replace(/\!/g, '').replace(/\:/g, '').replace(/\?/g, '').replace(/\,/g, '').replace(/\"/g, '').replace(/\'/g, '').replace(/\-/g, '').replace(/(\r\n|\n|\r)/gm,"").replace(/a/g, ayv).replace(/e/g, ayv).replace(/ı/g, ayv).replace(/i/g, ayv).replace(/o/g, ayv).replace(/ö/g, ayv).replace(/u/g, ayv).replace(/ü/g, ayv).replace(/A/g, ayv).replace(/E/g, ayv).replace(/I/g, ayv).replace(/İ/g, ayv).replace(/O/g, ayv).replace(/Ö/g, ayv).replace(/U/g, ayv).replace(/Ü/g, ayv) + ek;
+fhf.value=sonucum;
+
+}
+else{
+var sonucum = document.getElementById('kaynak').value.replace(/\!/g, '').replace(/\:/g, '').replace(/\?/g, '').replace(/\,/g, '').replace(/\"/g, '').replace(/\'/g, '').replace(/\-/g, '').replace(/(\r\n|\n|\r)/gm,"").replace(/a/g, 'o').replace(/e/g, 'ö').replace(/ı/g, 'u').replace(/i/g, 'ü').replace(/A/g, 'o').replace(/E/g, 'ö').replace(/I/g, 'u').replace(/İ/g, 'ü');
+fhf.value= sonucum;
+}
+fhf.focus();
+fhf.select();
+
+
+//document.getElementById('audiyo').innerHTML='<audio id="heheh" controls> <source id="ayd" src="http://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(sonucum).replace(/\./g, '') + '&tl=tr&total=1&idx=0prev=input" type="audio/ogg"> <source id="aydi" src="http://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(sonucum).replace(/\./g, '') + '&tl=tr&total=1&idx=0prev=input" type="audio/mpeg"> Ses önizlenemiyor </audio>';
+document.getElementById('audiyo').innerHTML='<iframe src="http://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(sonucum).replace(/\./g, '') + '&tl=tr&total=1&idx=0prev=input"></iframe>';
+
+
+/*
+
+var audio = new Audio();
+audio.src ='http://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(sonucum).replace(/\./g, '') + '&tl=tr&total=1&idx=0prev=input';
+audio.load();
+audio.play();
+
+document.getElementById('heheh').setAttribute('src','http://translate.google.com/translate_tts?ie=UTF-8&q=' + encodeURIComponent(sonucum).replace(/\./g, '') + '&tl=tr&total=1&idx=0prev=input');
+document.getElementById('heheh').load();
+document.getElementById('heheh').play();
+*/
+}
+
+</script>
+</head>
+<body>
+<span style="display:inline-block;font-size:22px;font-weight:bold;margin:15px auto;">ERGENATOR</span><br/>
+<textarea onclick="this.select();" id="kaynak">yazıyı buraya yapıştırın.</textarea><br/>
+<select id="ayva">
+<option value="o">o'ya çevir</option>
+<option selected="selected" value="i">i'ye çevir</option>
+<option value="0">Mete'nin formülü</option>
+</select>
+<a href="javascript:void(0)" onclick="ergenator();" class="eet">Ergenize Et</a>
+<br/><br/>
+<textarea onclick="this.select();" id="sonuc">yiziyi biriyi yipiştirin. bikbikbik.</textarea><div id="audiyo">
+
+</div>
+<script>
+var $_GET = {};
+if(document.location.toString().indexOf('?') !== -1) {
+    var query = document.location
+                   .toString()
+                   // get the query string
+                   .replace(/^.*?\?/, '')
+                   // and remove any existing hash string (thanks, @vrijdenker)
+                   .replace(/#.*$/, '')
+                   .split('&');
+
+    for(var i=0, l=query.length; i<l; i++) {
+       var aux = decodeURIComponent(query[i]).split('=');
+       $_GET[aux[0]] = aux[1];
+    }
+}
+//get the 'index' query parameter
+document.getElementById('kaynak').value = $_GET['text'];
+
+ergenator();
+</script>
+</body>
+</html>
